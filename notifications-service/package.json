@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "mqtt": "^2.18.1"
+    "amqplib": "^0.5.2",
+    "nodemailer": "^4.6.7"
   }
 }
