@@ -11,39 +11,36 @@ console.log('> notification service starting...');
  * @returns {Promise<amqp.channel | Error>}
  */
 async function createChannel(q) {
-    try{
-        const connection = await amqp.connect(config.amqp_url);
-        const channel = await connection.createChannel();
-        await channel.assertQueue(q);
-        return channel;
-    }catch (e){
-        return Promise.reject(e);
+    const connection = await amqp.connect(config.amqp_url);
+    const channel = await connection.createChannel();
+    await channel.assertQueue(q);
+    return channel;
+}
+
+
+/**
+ *
+ * @param {amqp.channel} channel
+ * @param {object} msg
+ * @param {Buffer} msg.content
+ * @returns {Promise<void|Error>}
+ */
+async function consume(channel, msg) {
+    if(msg === null) return;
+    try {
+        const mail = JSON.parse(msg.content.toString());
+        console.log(`> Sending email to ${mail.to} ...`);
+        await notificationController.send(mail);
+        console.log(`> Email has been successfully send to ${mail.to}`);
+        channel.ack(msg);
+    }catch (e) {
+        console.log(e);
     }
 }
 
 
+
 createChannel(config.q).then(channel => {
     console.log('> notification service listening for messages');
-   channel.consume(config.q, msg => {
-      if(msg != null){
-          console.log('msg: ', msg.content.toString());
-          notificationController.send({
-              from: '"Fred Foo 👻" <foo@example.com>', // sender address
-              to: 'michalzaq12@gmail.com', // list of receivers
-              subject: 'Hello ✔', // Subject line
-              text: 'Hello world?', // plain text body
-          }).then(() => {
-              console.log('Success send message');
-              channel.ack(msg);
-          }).catch(console.log)
-      }
-   });
+    channel.consume(config.q, msg => consume(channel, msg));
 }).catch(console.log);
-
-
-
-
-
-
-
-
