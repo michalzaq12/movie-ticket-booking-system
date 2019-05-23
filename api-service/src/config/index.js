@@ -1,13 +1,11 @@
 
 
 module.exports = {
-    // amqp_url: 'amqp://guest:guest@rabbitmq'
-    amqp_url: 'amqp://guest:guest@localhost',
-
-    q: process.env.MOVIES_QUEUE || 'movies',
+    amqp_url: process.env.AMQP_URL || 'amqp://guest:guest@localhost',
 
     services: {
-        notifications_q: process.env.NOTIFICATIONS_QUEUE || 'notifications'
+        notifications_q: process.env.NOTIFICATIONS_QUEUE || 'notifications',
+        movies_q: process.env.MOVIES_QUEUE || 'movies'
     }
 
 };

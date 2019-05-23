@@ -4,11 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js "
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.5.2"
+    "amqplib": "^0.5.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.3.0",
+    "mysql2": "^1.6.1",
+    "node-uuid": "^1.4.8",
+    "sequelize": "^4.38.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }

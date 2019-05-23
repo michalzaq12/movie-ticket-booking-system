@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinema City</title>
+
+
+  <% for(let file of htmlWebpackPlugin.options.assets){ %>
+    <% if(file.match(/\.css$/)) { %>
+      <link href="<%= htmlWebpackPlugin.files.publicPath + file %>" rel="stylesheet">
+    <% } else if(file.match(/\.js$/)) {%>
+      <script src="<%= htmlWebpackPlugin.files.publicPath + file %>"></script>
+    <% } else {%>
+      <link rel="prefetch" href="<%= htmlWebpackPlugin.files.publicPath + file %>">
+  <% }}%>
+
+
+
+  <style>
+    .loader {
+      position: absolute;
+      left: calc(50vw - 60px);
+      top: calc(50vh - 60px);
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #32aaf0;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="loader"></div>
+</div>
+</body>
+</html>

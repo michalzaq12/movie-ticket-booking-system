@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "stage-2",
+    "env"
+  ],
+  "env": {
+    "dev": {
+      "presets": ["stage-2"]
+    }
+  },
+  "plugins": ["transform-runtime"],
+  "comments": false
+}

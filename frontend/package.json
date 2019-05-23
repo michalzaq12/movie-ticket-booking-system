@@ -1,0 +1,56 @@
+{
+  "name": "vue-web-starter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "clean": "node build/bin/clean.js",
+    "dev": "cross-env WEBPACK=dev node build/bin/server.js",
+    "dll": "npm run clean && webpack --progress --config build/webpack.dll.conf.js",
+    "build": "webpack --progress --config build/webpack.conf.js",
+    "gh": "cross-env-shell WEBPACK=gh_pages \"npm run dll && npm run build\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "material-design-icons-iconfont": "^3.0.3",
+    "vue": "^2.5.18",
+    "vue-axios": "^2.1.1",
+    "vue-router": "^2.3.0",
+    "vue-youtube-embed": "^2.2.1",
+    "vuetify": "^1.5.14"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.6",
+    "css-loader": "^0.28.4",
+    "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "monfy": "^0.1.1",
+    "node-sass": "^4.5.3",
+    "resolve-url-loader": "^2.3.0",
+    "resource-hints-webpack-plugin": "0.0.2",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "url-loader": "^1.0.1",
+    "vue-loader": "^13.0.2",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^3.2.0",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-module-hot-accept": "^1.0.5"
+  }
+}
