@@ -1,6 +1,7 @@
 const Op = require('sequelize').Op;
 const {Movie, Seats} = require('../models');
 const openMovieService = require('../services/openMovie');
+const movieTrailerService = require('movie-trailer');
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -80,6 +81,12 @@ module.exports = {
             ...movieDetails,
             ...(movie.toJSON())
         }
-    }
+    },
 
+    async getTrailer({title, year}){
+        const trailer = await movieTrailerService(title, year);
+        return {
+            trailerUrl: trailer
+        }
+    }
 };

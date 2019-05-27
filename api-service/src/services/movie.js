@@ -79,6 +79,12 @@ module.exports = {
         return sendMessage({action: 'movie.getById', body: id})
     },
 
+    getTrailer(title, year){
+        console.log(title)
+        console.log(year)
+        return sendMessage({action: 'movie.getTrailer', body: {title: title, year: year}})
+    },
+
     createOrder(data){
         return sendMessage({action: 'order.create', body: data})
     },

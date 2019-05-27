@@ -47,6 +47,9 @@ async function processMessage(channel, msg) {
             case 'movie.getById':
                 actionResult = await movieController.getById(parseInt(data.body));
                 break;
+            case 'movie.getTrailer':
+                actionResult = await movieController.getTrailer(data.body);
+                break;
             case 'order.create':
                 actionResult = await orderController.create(data.body);
                 break;

@@ -29,6 +29,12 @@ router.get('/movies/:id', (req, res, next) => {
     }).catch(next);
 });
 
+router.get('/movies/:id/trailer', (req, res, next) => {
+    movieController.getTrailer(req.query.title, req.query.year).then(result => {
+        res.status(200).json(result);
+    }).catch(next);
+});
+
 
 router.post('/movies/:id/orders', (req, res, next) => {
     orderController.create({movieId: parseInt(req.params.id), seatIds: req.body.seatIds});

@@ -12,5 +12,9 @@ module.exports = {
 
     getById(id){
         return movieService.getMovieById(id);
+    },
+
+    getTrailer(title, year){
+        return movieService.getTrailer(title, year)
     }
 };
