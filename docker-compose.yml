@@ -1,36 +1,18 @@
 version: '2.1'
 services:
 
-  amqp:
-    build: ./rabbitmq
-    container_name: rabbitmq
-    ports:
-      - 5672:5672
-      - 8080:15672
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:15672"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
   notifications-service:
-      build: ./notifications-service
-      container_name: notifications-service
-      environment:
-        API_PORT: 8082
-      depends_on:
-         amqp:
-          condition: service_healthy
+    build: ./notifications-service
+    container_name: notifications-service
+    env_file:
+      - ./config.env
 
   movie-service:
     build: ./movie-service
     container_name: movie-service
     network_mode: "host"
-    environment:
-      API_PORT: 8082
-    depends_on:
-      amqp:
-        condition: service_healthy
+    env_file:
+      - ./config.env
 
   api-service:
     build: ./api-service
@@ -38,8 +20,7 @@ services:
     network_mode: "host"
     ports:
       - 3030:3030
+    env_file:
+      - ./config.env
     environment:
       API_PORT: 8082
-    depends_on:
-      amqp:
-        condition: service_healthy
