@@ -10,13 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "amqplib": "^0.5.2",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "3.0.0",
     "nodemailer": "^4.6.7",
-    "nodemailer-express-handlebars": "^3.0.0"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.24.4",
-    "gulp": "^3.9.1",
-    "gulp-inline-css": "^3.3.0"
+    "nodemailer-express-handlebars": "3.0.0"
   }
 }
