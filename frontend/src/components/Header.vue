@@ -3,18 +3,11 @@
     
         <v-toolbar-title class="ml-0">
             <v-toolbar-side-icon @click.stop="toggle"></v-toolbar-side-icon>
-            <span class="font-weight-bold title">Cinema City</span>
+            <span class="font-weight-bold title">Cinema City &#127871;</span>
         </v-toolbar-title>
     
         <v-spacer></v-spacer>
-    
-        <v-btn icon>
-            <v-icon>notifications</v-icon>
-        </v-btn>
-        <v-btn icon>
-            <v-icon>exit_to_app</v-icon>
-        </v-btn>
-    
+
     </v-toolbar>
 </template>
 

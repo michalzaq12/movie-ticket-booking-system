@@ -19,7 +19,7 @@ Vue.use(Vuetify, {
   theme: {
     primary: colors.green.base, // #E53935
     secondary: colors.red.lighten4, // #FFCDD2
-    accent: colors.indigo.base, // #3F51B5
+    accent: '#f0c835', // #3F51B5
     demko: '#023037'
   }
 });

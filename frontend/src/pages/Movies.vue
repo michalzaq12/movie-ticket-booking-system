@@ -2,8 +2,8 @@
 <div>
 
   <v-container grid-list-xs text-xs-center>
-    <v-layout row wrap fill-height>
-
+    <v-layout row wrap fill-height :align-center="isLoading">
+      <v-progress-circular v-if="isLoading" indeterminate></v-progress-circular>
       <v-flex xs12 md3 wrap v-for="movie in movies" :key="movie.imdbID" class="pa-2 mb-4 movie__card" @click="routeTo(movie)" color="demko">
         <v-layout column fill-height class="movie__card__content">
           <v-flex>
@@ -53,16 +53,18 @@
     data(){
       return {
         movies: [],
-        totalResults: 0
+        totalResults: 0,
+        isLoading: true
       }
     },
 
     methods:{
       fetchMovies(){
+          this.isLoading = true;
           this.$http.get('/movies').then(({data}) => {
             console.log(data);
             this.movies = data;
-          })
+          }).finally(() => this.isLoading = false)
       },
       // fakeFetch(){
       //   this.movies = moviesDB.Search;
