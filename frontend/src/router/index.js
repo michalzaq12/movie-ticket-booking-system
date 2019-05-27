@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
 import Movies from '@/pages/Movies'
 import Movie from '@/pages/Movie'
 import Orders from '@/pages/Orders'
@@ -12,14 +10,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      name: 'login',
-      path: '/login',
-      component: Login,
-      meta: { omitAuth: true, withoutLayout: true}
+      redirect: 'movies'
     },
     {
       path: '/movies',
@@ -27,7 +18,7 @@ export default new Router({
       component: Movies
     },
     {
-      path: '/movie/:id',
+      path: '/movies/:id',
       name: 'movie',
       component: Movie
     },

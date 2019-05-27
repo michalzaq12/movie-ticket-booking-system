@@ -4,10 +4,12 @@
       <v-layout row wrap fill-height>
         <v-progress-circular v-if="isLoading" indeterminate></v-progress-circular>
 
-        <v-flex v-else xs12 v-for="order in orders" :key="order.id">
-          <div>Zamówienie z dnia: {{order.createdAt}}</div>
-          <p>Film: {{order.movie.title}}</p>
-          <div>Miejsca: <div v-for="seat in order.seats">{{seat.row}}{{seat.column}}</div></div>
+        <v-flex v-else xs12 v-for="order in orders" :key="order.id" class="order">
+          <div class="font-weight-bold">{{order.createdAt | date}}</div>
+          <p><span class="font-weight-bold">Movie:</span> {{order.movie.hall}} 12:00 Batman</p>
+          <div><span class="font-weight-bold">Miejsca:</span>
+            <span v-for="seat in order.seats">{{seat.row}}{{seat.column}} </span>
+          </div>
         </v-flex>
 
 
@@ -29,6 +31,13 @@
       }
     },
 
+    filters: {
+      date(value){
+        if (!value) return '';
+        value = value.toString();
+        return new Date(value).toLocaleString();
+      }
+    },
 
     methods:{
       fetchOrders(){
@@ -46,3 +55,11 @@
 
   }
 </script>
+
+
+<style lang="scss" scoped>
+  .order{
+    border: 1px solid black;
+    margin-bottom: 5px;
+  }
+</style>

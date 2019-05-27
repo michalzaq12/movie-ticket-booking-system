@@ -101,7 +101,7 @@
         this.$http.post('/movies/' + this.$route.params.id + '/orders', {
           seatIds: this.seatsOrder
         }).then(() => {
-          this.$router.push({ name: 'movies'})
+          this.$router.push({ name: 'orders'})
         })
       }
     },

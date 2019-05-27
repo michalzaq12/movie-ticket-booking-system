@@ -23,11 +23,6 @@
         drawer: this.value,
         items: [
           {
-            title: 'Home',
-            icon: 'home',
-            component: 'home'
-          },
-          {
             title: 'Movies',
             icon: 'theaters',
             component: 'movies'
@@ -52,7 +47,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .router-link-exact-active {
+  .router-link-active {
     border-left: 3px solid $brand-primary;
     background: darken($brand-primary, 40%);
   }
