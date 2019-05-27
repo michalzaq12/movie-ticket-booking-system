@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "material-design-icons-iconfont": "^3.0.3",
+    "socket.io-client": "^2.2.0",
     "vue": "^2.5.18",
     "vue-axios": "^2.1.1",
     "vue-router": "^2.3.0",

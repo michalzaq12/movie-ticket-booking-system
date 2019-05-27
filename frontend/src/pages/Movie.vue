@@ -36,7 +36,11 @@
 
 
             <v-flex xs2 v-for="seat in details.seats" :key="seat.id">
-              <div class="seat" :class="{'available': seat.isAvailable, 'unavailable': !seat.isAvailable, 'selected': seat.isSelected}" @click="addToOrder(seat)">
+              <div class="seat" @click="addToOrder(seat)"
+                   :class="{'available': seat.isAvailable,
+                   'unavailable': !seat.isAvailable,
+                   'temp-selected': seat.isTempSelected,
+                   'selected': seat.isSelected}" >
                 <span class="display-1 font-weight-thin">{{seat.row}} {{seat.column}}</span>
               </div>
             </v-flex>
@@ -92,10 +96,20 @@
         if(seat.isSelected === true){
           this.$set(seat, 'isSelected', false);
           this.seatsOrder.splice(this.seatsOrder.indexOf(seat.is), 1);
+          this.$socket.emit('temp-book-seat', {
+            room: 'movie/' + this.$route.params.id,
+            seatId: seat.id,
+            state: false
+          });
           return;
         }
         this.$set(seat, 'isSelected', true);
         this.seatsOrder.push(seat.id);
+        this.$socket.emit('temp-book-seat', {
+          room: 'movie/' + this.$route.params.id,
+          seatId: seat.id,
+          state: true
+        });
       },
       sendOrder(){
         this.$http.post('/movies/' + this.$route.params.id + '/orders', {
@@ -103,11 +117,23 @@
         }).then(() => {
           this.$router.push({ name: 'orders'})
         })
+      },
+      onTempBook(params){
+        const seat = this.details.seats.find(el => el.id === params.seatId);
+        console.log(seat);
+        if(seat === undefined) return;
+        this.$set(seat, 'isTempSelected', params.state);
       }
     },
 
     created(){
       this.fetchDetails();
+      this.$socket.emit('join-room', 'movie/'+ this.$route.params.id);
+      this.$socket.on('temp-book-seat', this.onTempBook)
+    },
+    beforeDestroy() {
+      this.$socket.emit('leave-room', 'movie/'+ this.$route.params.id);
+      this.$socket.off('temp-book-seat')
     }
 
   }
@@ -140,6 +166,8 @@
   /*  background: linear-gradient(white 0%, rgba(black, 0.6) 60%);*/
   /*}*/
 
+  $available-color: rgba(#f0c835, 0.9);
+  $unavailable-color: #9a0000;
 
   .seat {
     height: 100%;
@@ -152,8 +180,7 @@
   }
 
   .available{
-    $color: rgba(#f0c835, 0.9);
-    background-color: $color;
+    background-color: $available-color;
     cursor: pointer;
 
     &:hover:not(.selected){
@@ -166,7 +193,18 @@
     background-color: #023037;
   }
 
+  .temp-selected{
+    background: repeating-linear-gradient(
+    45deg,
+        $unavailable-color, $unavailable-color 10px, $available-color 10px, $available-color 20px
+    );
+  }
+
+  .temp-selected .selected{
+    background: #32aaf0;
+  }
+
   .unavailable{
-    background-color: #9a0000;
+    background-color: $unavailable-color;
   }
 </style>

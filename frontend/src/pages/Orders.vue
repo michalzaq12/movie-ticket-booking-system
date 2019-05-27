@@ -7,7 +7,7 @@
         <v-flex v-else xs12 v-for="order in orders" :key="order.id" class="order">
           <div class="font-weight-bold">{{order.createdAt | date}}</div>
           <p><span class="font-weight-bold">Movie:</span> {{order.movie.hall}} 12:00 Batman</p>
-          <div><span class="font-weight-bold">Miejsca:</span>
+          <div><span class="font-weight-bold">Seats:</span>
             <span v-for="seat in order.seats">{{seat.row}}{{seat.column}} </span>
           </div>
         </v-flex>
