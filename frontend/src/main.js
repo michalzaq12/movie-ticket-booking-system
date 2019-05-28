@@ -5,7 +5,6 @@ import App from './App';
 import router from '@/router';
 
 import api from '@/api';
-import moviesApi from '@/api/movies'
 import './eventBus';
 
 import io from 'socket.io-client';
@@ -52,11 +51,10 @@ Vue.mixin({
 Vue.config.productionTip = IS_DEV;
 Vue.config.debug = IS_DEV;
 
-Vue.prototype.$moviesApi = moviesApi;
 Vue.prototype.$http = api;
 api.init();
 
-Vue.prototype.$socket = io('http://localhost:3030');
+Vue.prototype.$socket = io(`${process.env.API_GATEWAY_URL}:${process.env.API_GATEWAY_PORT}`);
 
 
 

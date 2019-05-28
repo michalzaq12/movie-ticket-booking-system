@@ -1,11 +1,11 @@
 import axios from 'axios'
 import errorHandler from './errorHanlder';
 
-const API_URL = 'http://localhost:3030/';
+const API_URL = `${process.env.API_GATEWAY_URL}:${process.env.API_GATEWAY_PORT}/`;
 
 const httpClient = axios.create({
   baseURL: API_URL
-})
+});
 
 export default {
   API_URL,

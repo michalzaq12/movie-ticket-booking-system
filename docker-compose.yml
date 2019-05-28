@@ -6,28 +6,25 @@ services:
     ports:
       - 80:80
     env_file:
-      - ./config.env
+      - .env
 
   notifications-service:
     build: ./notifications-service
-    #container_name: notifications-service
     env_file:
-      - ./config.env
+      - .env
 
   movie-service:
     build: ./movie-service
-    #container_name: movie-service
     #access to db running on host machine
     network_mode: "host"
     env_file:
-      - ./config.env
+      - .env
 
   api-service:
     build: ./api-service
     container_name: api-gateway
-    #network_mode: "host"
     ports:
-      - 3030:3030
+      - ${API_GATEWAY_PORT}:${API_GATEWAY_PORT}
     env_file:
-      - ./config.env
+      - .env
 
