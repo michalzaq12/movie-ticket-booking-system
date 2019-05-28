@@ -2,6 +2,8 @@
 Movie Tickets Booking App
 
 
+
+
 ## Running
 
 ### services
@@ -16,3 +18,8 @@ npm run dll
 npm run dev
 ```
 
+
+## Architecture
+
+
+![](docs/architecture.jpeg)
