@@ -12,8 +12,8 @@ let config = {
 
 
   build__gh_pages: {
-    publicPath: '/vue-web-starter',
-    path: path.join(__dirname, '../docs')
+    publicPath: '/',
+    path: path.join(__dirname, '../public')
   }
 
 

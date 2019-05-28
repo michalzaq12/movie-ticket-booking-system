@@ -1,26 +1,33 @@
 version: '2.1'
 services:
 
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+    env_file:
+      - ./config.env
+
   notifications-service:
     build: ./notifications-service
-    container_name: notifications-service
+    #container_name: notifications-service
     env_file:
       - ./config.env
 
   movie-service:
     build: ./movie-service
-    container_name: movie-service
+    #container_name: movie-service
+    #access to db running on host machine
     network_mode: "host"
     env_file:
       - ./config.env
 
   api-service:
     build: ./api-service
-    container_name: api-service
-    network_mode: "host"
+    container_name: api-gateway
+    #network_mode: "host"
     ports:
       - 3030:3030
     env_file:
       - ./config.env
-    environment:
-      API_PORT: 8082
+

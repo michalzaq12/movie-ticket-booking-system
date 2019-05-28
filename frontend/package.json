@@ -11,7 +11,7 @@
     "dev": "cross-env WEBPACK=dev node build/bin/server.js",
     "dll": "npm run clean && webpack --progress --config build/webpack.dll.conf.js",
     "build": "webpack --progress --config build/webpack.conf.js",
-    "gh": "cross-env-shell WEBPACK=gh_pages \"npm run dll && npm run build\""
+    "build:all": "cross-env-shell WEBPACK=gh_pages \"npm run dll && npm run build\""
   },
   "author": "",
   "license": "ISC",
@@ -26,11 +26,11 @@
     "vuetify": "^1.5.14"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
+    "@babel/core": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.2.0",
+    "@babel/runtime": "7.2.0",
+    "babel-loader": "8.0.4",
     "cross-env": "^5.1.6",
     "css-loader": "^0.28.4",
     "express": "^4.15.3",
@@ -48,8 +48,8 @@
     "url-loader": "^1.0.1",
     "vue-loader": "^13.0.2",
     "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^3.2.0",
+    "vue-template-compiler": "^2.5.19",
+    "webpack": "^3.0.0",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-module-hot-accept": "^1.0.5"
