@@ -1,3 +1,4 @@
+const morgan  = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
@@ -6,7 +7,7 @@ const routes = require('./routes');
 let app = express();
 const server = require('http').createServer(app);
 
-
+app.use(morgan('tiny'));
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -52,7 +53,7 @@ function clearClientReservation(socket) {
 
 const io = require('socket.io')(server);
 io.on('connection', socket => {
-    console.log('new client: ', socket);
+    console.log('new client: ', socket.id);
 
     socket.on('join-room', room => {
         socket.join(room);
