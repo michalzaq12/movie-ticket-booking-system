@@ -1,7 +1,7 @@
 <template>
-  <v-navigation-drawer class="demko" v-model="drawer" dark fixed app :clipped="$vuetify.breakpoint.lgAndUp">
+  <v-navigation-drawer class="primary" v-model="drawer" dark fixed app :clipped="$vuetify.breakpoint.lgAndUp">
   
-    <v-list class="demko">
+    <v-list class="primary">
       <router-link tag="v-list-tile" :to="{name: item.component}" v-for="item in items" :key="item.title" @click="console.log('hello')">
         <v-list-tile-action>
           <v-icon>{{ item.icon }}</v-icon>
@@ -48,7 +48,7 @@
 
 <style lang="scss" scoped>
   .router-link-active {
-    border-left: 3px solid $brand-primary;
+    border-left: 3px solid $brand-accent;
     background: darken($brand-primary, 40%);
   }
 </style>

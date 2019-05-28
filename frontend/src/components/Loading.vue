@@ -20,7 +20,7 @@
       },
       progressColor: {
         type: String,
-        default: 'demko'
+        default: 'primary'
       },
     },
   }

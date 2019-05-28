@@ -6,7 +6,9 @@
 
         <v-flex v-else xs12 v-for="order in orders" :key="order.id" class="order">
           <div class="font-weight-bold">{{order.createdAt | date}}</div>
-          <p><span class="font-weight-bold">Movie:</span> {{order.movie.hall}} 12:00 Batman</p>
+          <p><span class="font-weight-bold">Hall:</span> {{order.movie.hall}}</p>
+          <p><span class="font-weight-bold">Time:</span> {{order.movie.date | time}}</p>
+          <p><span class="font-weight-bold">Movie:</span> {{order.movie.title}}</p>
           <div><span class="font-weight-bold">Seats:</span>
             <span v-for="seat in order.seats">{{seat.row}}{{seat.column}} </span>
           </div>
@@ -36,6 +38,11 @@
         if (!value) return '';
         value = value.toString();
         return new Date(value).toLocaleString();
+      },
+      time(value){
+        if (!value) return '';
+        value = value.toString();
+        return new Date(value).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
       }
     },
 

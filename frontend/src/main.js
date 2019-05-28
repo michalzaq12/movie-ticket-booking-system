@@ -19,10 +19,9 @@ import '@/assets/reset.css';
 import colors from 'vuetify/es5/util/colors';
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.green.base, // #E53935
-    secondary: colors.red.lighten4, // #FFCDD2
-    accent: '#f0c835', // #3F51B5
-    demko: '#023037'
+    primary: '#023037',
+    secondary: colors.red.lighten4,
+    accent: '#f0c835',
   }
 });
 
