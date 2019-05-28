@@ -25,17 +25,13 @@ async function createChannel(q) {
 function sendMessage(data){
     return new Promise((resolve, reject) => {
         const corrId = uuid();
-        console.log('ID: ', corrId);
-        //channel = channel || await createChannel(config.services.movies_q);
 
         promises.set(corrId, msg => {
             const data = JSON.parse(msg.content.toString());
             if(data.error !== undefined){
-                console.log('reject');
                 reject(data);
             }
             else {
-                console.log('reseolve');
                 resolve(data.body);
             }
         });
@@ -48,13 +44,9 @@ function sendMessage(data){
 createChannel(config.services.movies_q).then(channel => {
     globalChannel = channel;
     console.log('> API listening for replies');
-    console.log(replyQueue);
     channel.consume(replyQueue, msg => {
-        console.log('Get message: ', msg);
         const corrId = msg.properties.correlationId;
-        if(!promises.has(corrId)) {
-            console.log('Invalid corrId');
-        }
+        if(!promises.has(corrId)) console.log('Invalid corrId');
         const promise = promises.get(corrId);
         promise(msg);
         promises.delete(corrId);
@@ -71,17 +63,15 @@ module.exports = {
         return sendMessage({action: 'movie.create', body: data})
     },
 
-    async getAllMovies(){
+    getAllMovies(){
         return sendMessage({action: 'movie.getAll'})
     },
 
-    async getMovieById(id){
+    getMovieById(id){
         return sendMessage({action: 'movie.getById', body: id})
     },
 
     getTrailer(title, year){
-        console.log(title)
-        console.log(year)
         return sendMessage({action: 'movie.getTrailer', body: {title: title, year: year}})
     },
 

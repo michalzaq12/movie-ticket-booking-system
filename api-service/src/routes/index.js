@@ -17,8 +17,6 @@ router.post('/movies', (req, res, next) => {
 
 router.get('/movies', (req, res, next) => {
     movieController.getAll().then(result => {
-        console.log('wesszlo 2');
-        console.log(result);
         res.status(200).json(result);
     }).catch(next);
 });
