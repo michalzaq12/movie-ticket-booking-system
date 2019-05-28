@@ -27,12 +27,33 @@ module.exports = {
             await order.setSeats(seatIds, {transaction});
 
             await transaction.commit();
-            return order;
+            const fullModel = await this.getById(order.id);
+            return fullModel;
         } catch (err) {
             await transaction.rollback();
             return Promise.reject(err);
         }
 
+    },
+
+    getById(id){
+        return Order.findOne({
+            where: {
+              id: {[Op.eq]: id}
+            },
+            include: [
+                {
+                    attributes: ['row', 'column'],
+                    model: Seats,
+                    through:{
+                        attributes: []
+                    }
+                },
+                {
+                    model: Movie
+                }
+            ]
+        })
     },
 
     getAll(){

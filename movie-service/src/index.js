@@ -33,8 +33,8 @@ async function processMessage(channel, msg) {
     if(msg === null) return;
     try {
         const data = JSON.parse(msg.content.toString());
-        console.log(`> Message: ${msg.content.toString()} `);
 
+        console.log('Dispatch action: ', data.action);
         let actionResult = null;
 
         switch (data.action){
@@ -70,7 +70,6 @@ async function processMessage(channel, msg) {
         channel.ack(msg);
         channel.sendToQueue(msg.properties.replyTo, Buffer.from(JSON.stringify(response)), {correlationId: msg.properties.correlationId});
 
-        console.log('ACK Message');
     }catch (e) {
         console.log('Error in movie-service', e);
         const response = {

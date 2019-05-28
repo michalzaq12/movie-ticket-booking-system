@@ -10,11 +10,8 @@ const SEATS_COMUNS = 6;
 
 
 module.exports = {
-    async create({imdbID, hall}){
-        const movie = await Movie.create({
-            imdbID,
-            hall
-        });
+    async create(data){
+        const movie = await Movie.create(data);
 
         const seats = [];
 
@@ -47,8 +44,7 @@ module.exports = {
             });
             results.push({
                 ...movie,
-                id: movieEntity.id,
-                hall: movieEntity.hall
+                ...(movieEntity.toJSON())
             })
         }
 
