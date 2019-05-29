@@ -11,6 +11,15 @@ COPY config config/
 COPY index.html ./
 COPY .babelrc ./
 
+ARG API_GATEWAY_URL
+ENV API_GATEWAY_URL=$API_GATEWAY_URL
+RUN echo "-> $API_GATEWAY_URL"
+
+
+ARG API_GATEWAY_PORT
+ENV API_GATEWAY_PORT=$API_GATEWAY_PORT
+RUN echo "-> $API_GATEWAY_PORT"
+
 RUN npm run build:all
 
 

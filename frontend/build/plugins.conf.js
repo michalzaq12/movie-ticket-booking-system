@@ -8,11 +8,16 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
+console.log(process.env);
+console.log(process.env.API_GATEWAY_URL);
+
 let plugins = {
   friendly: new FriendlyErrorsPlugin(),
 
   define: new webpack.DefinePlugin({
-    IS_DEV: process.env.WEBPACK === 'dev' ? JSON.stringify(true) : JSON.stringify(false)
+    IS_DEV: process.env.WEBPACK === 'dev' ? JSON.stringify(true) : JSON.stringify(false),
+    API_GATEWAY_URL: JSON.stringify(process.env.API_GATEWAY_URL),
+    API_GATEWAY_PORT: JSON.stringify(process.env.API_GATEWAY_PORT)
   }),
 
   hot__dev: new webpack.HotModuleReplacementPlugin(),

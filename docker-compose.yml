@@ -2,7 +2,11 @@ version: '2.1'
 services:
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        - API_GATEWAY_URL=${API_GATEWAY_URL}
+        - API_GATEWAY_PORT=${API_GATEWAY_PORT}
     ports:
       - 80:80
     env_file:

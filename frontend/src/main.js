@@ -1,3 +1,4 @@
+/*globals IS_DEV */
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 
@@ -54,7 +55,7 @@ Vue.config.debug = IS_DEV;
 Vue.prototype.$http = api;
 api.init();
 
-Vue.prototype.$socket = io(`${process.env.API_GATEWAY_URL}:${process.env.API_GATEWAY_PORT}`);
+Vue.prototype.$socket = io(api.API_URL);
 
 
 

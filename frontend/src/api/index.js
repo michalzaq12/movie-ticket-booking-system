@@ -1,7 +1,8 @@
+/*globals API_GATEWAY_URL, API_GATEWAY_PORT*/
 import axios from 'axios'
 import errorHandler from './errorHanlder';
 
-const API_URL = `${process.env.API_GATEWAY_URL}:${process.env.API_GATEWAY_PORT}/`;
+const API_URL = API_GATEWAY_URL + ':' + API_GATEWAY_PORT;
 
 const httpClient = axios.create({
   baseURL: API_URL
