@@ -1,5 +1,5 @@
 # movie-tickets
-An application for booking tickets at the cinema. Implemented in the microservices architecture, using Docker and docker-compose
+An application for booking tickets at the cinema. Implemented in the microservices architecture, using Docker and docker-compose.
 
 
 ## Architecture
@@ -29,7 +29,7 @@ After starting services web app is available on `http://localhost:80`
 
 ## Features
 
-- [x] **Browsing available movies at cinema**
+- **Browsing available movies at cinema**
    
    *Details of movies are fetched from external api's [OMDb](http://www.omdbapi.com/) [TMDb](https://www.themoviedb.org/)*
    
@@ -37,7 +37,7 @@ After starting services web app is available on `http://localhost:80`
    
    ![](docs/movie.jpg)
    
-- [x] **Buying tickets**
+- **Buying tickets**
     
    *Orders are stored in local database*
    
@@ -46,20 +46,34 @@ After starting services web app is available on `http://localhost:80`
    ![](docs/orders.png)
     
 
-- [x] **Temporary reservations** 
+- **Temporary reservations** 
 
-    *Reservations is implemented using [Socket.io](https://socket.io/) 
-    (each movie has own room -> each client subscribe only room/movie event which actually browsing) 
+    *Reservations are implemented by using [Socket.io](https://socket.io/) 
+    (each movie has own room -> each client subscribe only room/movie event which is actually browsed) 
     and stored in-memory on api-gateway.*
-    *To improve api scalability on production, they should be stored in distributed DB like [Redis](https://redis.io/)*
+    *To improve api scalability on production, reservations should be stored in distributed DB like [Redis](https://redis.io/)*
     
     ![](docs/temporary-reservation.gif)
     
-- [x] **Sending email with purchased ticket** 
+- **Sending email with purchased ticket** 
+
+    *Using fake SMTP service [Ethereal](https://ethereal.email/)*
 
     ![](docs/ticket.png)
 
+# Development
+
+## Commands
+
+```
+#rebuild containers
+docker-compose build
+
+#list all containers
+docker-compose ps -all
+```
+
 ## Useful links
 
-- how to apply environment variables on container build https://github.com/docker/compose/issues/1837#issuecomment-316896858
+- how to apply environment variables on container build stage https://github.com/docker/compose/issues/1837#issuecomment-316896858
 - docker-compose build args (map vs list) https://github.com/docker/for-mac/issues/2661#issuecomment-370362897
